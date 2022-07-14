@@ -60,3 +60,11 @@ def update_student(student_id: int, student: UpdateStudent):
     if student.class_:
         students[student_id]["class_"] = student.class_
     return students[student_id]
+
+
+@app.delete("/delete-student/{student_id}")
+def delete_student(student_id: int):
+    if student_id not in students:
+        return {"message": "Student with this ID not found"}
+    del students[student_id]
+    return {"message": "Student with this ID deleted"}
